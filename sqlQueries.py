@@ -31,19 +31,9 @@ def create(group, numebrOfItems):
     return commands 
 
 
-def insertUP_SchematyOcenOpisowychNaglowek(data,IdScheamtyOcenOpisowych):
+def insertUP_SchematyOcenOpisowychNaglowek(IdScheamtyOcenOpisowych,Wartosc,Kolejnosc):
     commands = []
     commands.append(f"""
-    INSERT INTO [dbo].[UP_SchematyOcenOpisowychNaglowek]
-           ([IdScheamtyOcenOpisowych]
-           ,[Wartosc]
-           ,[Kolejnosc])
-     VALUES
-           (
-            {IdScheamtyOcenOpisowych}
-           ,{data.Wartosc}
-           ,{data.Kolejnosc})
-      GO
-      """)
+    INSERT INTO [dbo].[UP_SchematyOcenOpisowychNaglowek] ([IdScheamtyOcenOpisowych], [Wartosc], [Kolejnosc]) VALUES ({IdScheamtyOcenOpisowych}, '{Wartosc}', {Kolejnosc}) GO""")
     return commands
 

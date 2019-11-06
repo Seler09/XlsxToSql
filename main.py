@@ -24,6 +24,6 @@ if __name__ == '__main__':
 
     sheet = excelManager.fileStream(args.fileNameExcel)       
     
-    # excelManager.fileInfo(sheet[1])    
+    excelManager.fileInfo(sheet[1])    
     # excelManager.fileStream(sheet[0])
     # print(UP_SchematyOcenOpisowych.nazwa)

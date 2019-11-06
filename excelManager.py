@@ -7,10 +7,11 @@ import sqlQueries
 def fileStream(fileName):
     fileObject = xlrd.open_workbook(f"{fileName}", on_demand = True)     
    
-    for sheetName in fileObject.sheet_names():
-        print('-----------------------', sheetName, '-----------------------')
-        currentSheet = fileObject.sheet_by_name('4_LATEK_OPIS') #sheetName        
-        sheetData = fileRead(currentSheet)           
+    # for sheetName in fileObject.sheet_names():
+    #print('-----------------------', sheetName, '-----------------------')
+    print('-----------------------4_LATEK_OPIS-----------------------')
+    currentSheet = fileObject.sheet_by_name('4_LATEK_OPIS') #sheetName        
+    sheetData = fileRead(currentSheet)           
 
     return sheetData, fileObject
 
@@ -49,8 +50,9 @@ def fileRead(sheet):
             if emptyRow == True:                
                 continue     
 
-            if row == 4 and col >= 2: #read row with headers
-                fileManager.outputFileStream('a', 'd.txt', 'y' , f"Nagłówek {row} {col-1} {sheet.cell_value(row,col)}\n")            
+            if row == 4 and col >= 3:
+                fileManager.outputFileStream('a', 'skrypt.sql', 'y' , sqlQueries.insertUP_SchematyOcenOpisowychNaglowek(21,sheet.cell_value(row,col),col-2))      
+                print(row, " ", col)           
           
             fileManager.outputFileStream('a', 'd.txt', 'y' , f"{row} {col} {sheet.cell_value(row,col)}\n")
 
