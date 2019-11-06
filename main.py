@@ -1,38 +1,9 @@
 import argparse
 import os
-import createFile
+import sqlQueries
 import fileManager
 import excelManager
-
-
-
-class UP_SchematyOcenOpisowych:
-    typSchematu = 0
-    nazwa = ''
-    poziom = 0
-    opis = ''
-
-
-class UP_SchematyOcenOpisowychNaglowek:
-    idSchematyOcenOpisowych = 0
-    wartosc = ''
-    kolejnosc = 0
-
-
-class UP_SchematyOcenOpisowychWiersz:
-    idSchematyOcenOpisowych = 0
-    wartosc = ''
-    wyroznienie = 0
-    kolejnosc = 0
-
-
-class UP_SchematyOcenOpisowychZawartosc:
-    idSchematyOcenOpisowych = 0
-    idSchematyOcenOpisowychWiersz = ''
-    idSchematyOcenOpisowychNaglowek = None
-    wartosc = ''
-    grupa = 0
-    kolejnosc = 0
+import structs
 
 
 def parse_args():
@@ -49,10 +20,10 @@ def parse_args():
 if __name__ == '__main__':
     args = parse_args()
     
-    naglowek = UP_SchematyOcenOpisowychNaglowek()
+    naglowek = structs.UP_SchematyOcenOpisowychNaglowek()
 
     sheet = excelManager.fileStream(args.fileNameExcel)       
     
-    excelManager.fileInfo(sheet[1])    
-    excelManager.fileStream(sheet[0])
-    print(UP_SchematyOcenOpisowych.nazwa)
+    # excelManager.fileInfo(sheet[1])    
+    # excelManager.fileStream(sheet[0])
+    # print(UP_SchematyOcenOpisowych.nazwa)
