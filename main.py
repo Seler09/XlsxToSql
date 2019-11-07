@@ -21,8 +21,10 @@ if __name__ == '__main__':
     args = parse_args()       
 
     commands = excelFileManager.fileStream(args.fileNameExcel)       
-    insertQueries = sqlQueries.insertUP_SchematyOcenOpisowychNaglowekFor(commands)
-    sqlFileManager.outputFileStream("a","tmpTable.sql",insertQueries)
+    insertQueries1 = sqlQueries.insertUP_SchematyOcenOpisowychNaglowekFor(commands[0])
+    insertQueries2 = sqlQueries.insertUP_SchematyOcenOpisowychWierszFor(commands[1])
+    sqlFileManager.outputFileStream("a","tmpTable.sql",insertQueries1)
+    sqlFileManager.outputFileStream("a","tmpTable.sql",insertQueries2)
     
     # excelFileManager.fileInfo(sheet[1])    
     # excelManager.fileStream(sheet[0])
