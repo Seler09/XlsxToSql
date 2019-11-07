@@ -6,7 +6,7 @@ __pycache__/
 *.so
 
 # Untracked files:
-skrypt.sql
+*.sql
 
 # Distribution / packaging
 .Python

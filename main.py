@@ -20,7 +20,9 @@ def parse_args():
 if __name__ == '__main__':
     args = parse_args()       
 
-    sheet = excelFileManager.fileStream(args.fileNameExcel)       
+    commands = excelFileManager.fileStream(args.fileNameExcel)       
+    insertQueries = sqlQueries.insertUP_SchematyOcenOpisowychNaglowekFor(commands)
+    sqlFileManager.outputFileStream("a","tmpTable.sql",insertQueries)
     
     # excelFileManager.fileInfo(sheet[1])    
     # excelManager.fileStream(sheet[0])

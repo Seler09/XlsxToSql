@@ -1,4 +1,4 @@
-def outputFileStream(streamType, fileName, clearFile, data):    
+def outputFileStream(streamType, fileName, data):    
     fileObject = open(f"{fileName}", streamType)    
     fileWrite(fileObject, data)
     fileObject.close()
