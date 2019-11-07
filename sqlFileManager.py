@@ -6,7 +6,3 @@ def outputFileStream(streamType, fileName, clearFile, data):
 
 def fileWrite(fileObject, data):
     fileObject.writelines(data)
-
-
-def fileRead(fileObject):
-    return fileObject.readlines() 

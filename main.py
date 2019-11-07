@@ -1,8 +1,8 @@
 import argparse
 import os
 import sqlQueries
-import fileManager
-import excelManager
+import sqlFileManager
+import excelFileManager
 import structs
 
 
@@ -18,12 +18,10 @@ def parse_args():
 
 
 if __name__ == '__main__':
-    args = parse_args()
-    
-    naglowek = structs.UP_SchematyOcenOpisowychNaglowek()
+    args = parse_args()       
 
-    sheet = excelManager.fileStream(args.fileNameExcel)       
+    sheet = excelFileManager.fileStream(args.fileNameExcel)       
     
-    excelManager.fileInfo(sheet[1])    
+    # excelFileManager.fileInfo(sheet[1])    
     # excelManager.fileStream(sheet[0])
     # print(UP_SchematyOcenOpisowych.nazwa)

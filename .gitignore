@@ -5,6 +5,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Untracked files:
+skrypt.sql
+
 # Distribution / packaging
 .Python
 env/
