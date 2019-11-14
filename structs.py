@@ -1,5 +1,4 @@
-class UP_SchematyOcenOpisowych:
-    typSchematu = 0
+class UP_SchematyOcenOpisowych:    
     nazwa = ''
     poziom = 0
     opis = ''
@@ -20,8 +19,8 @@ class UP_SchematyOcenOpisowychWiersz:
 
 class UP_SchematyOcenOpisowychZawartosc:
     idSchematyOcenOpisowych = 0
-    idSchematyOcenOpisowychWiersz = ''
+    idSchematyOcenOpisowychWiersz = None
     idSchematyOcenOpisowychNaglowek = None
     wartosc = ''
-    grupa = 0
+    grupa = None
     kolejnosc = 0

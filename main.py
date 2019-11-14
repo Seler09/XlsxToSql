@@ -13,7 +13,8 @@ def parse_args():
     p.add_argument('--streamType', default='a' , help='Stream type (r/r+/w/w+/a/a+')
     p.add_argument('--fileNameTxt', default='./queries', help='Name or path of  txt file')
     p.add_argument('--fileNameExcel', default='none', help='Name or path of excel sheet', required=True)
-    p.add_argument('--overrideTxtFile', default='n', help='Override default txt file ([y]es or [n]o)?')  
+    p.add_argument('--overrideTxtFile', default='n', help='Override default txt file ([y]es or [n]o)?')
+    p.add_argument('--schemaType','-st', type=int, help='Type of schema')
     return p.parse_args()
 
 
@@ -21,8 +22,13 @@ if __name__ == '__main__':
     args = parse_args()       
 
     commands = excelFileManager.fileStream(args.fileNameExcel)       
-    insertQueries1 = sqlQueries.insertUP_SchematyOcenOpisowychNaglowekFor(commands[0])
-    insertQueries2 = sqlQueries.insertUP_SchematyOcenOpisowychWierszFor(commands[1])
+    insertQueries0 = sqlQueries.insertUP_SchematyOcenOpisowychNaglowekFor(commands[0])
+    insertQueries1 = sqlQueries.insertUP_SchematyOcenOpisowychWierszFor(commands[1])
+    insertQueries2 = sqlQueries.insertUP_SchematyOcenOpisowychZawartoscFor(commands[2])
+    insertQueries3 = sqlQueries.insertUP_SchematyOcenOpisowych(args.schemaType,commands[3])
+
+    sqlFileManager.outputFileStream("a","tmpTable.sql",insertQueries3)
+    sqlFileManager.outputFileStream("a","tmpTable.sql",insertQueries0)
     sqlFileManager.outputFileStream("a","tmpTable.sql",insertQueries1)
     sqlFileManager.outputFileStream("a","tmpTable.sql",insertQueries2)
     
