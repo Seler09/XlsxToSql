@@ -13,9 +13,8 @@ idStruct = 23
 def fileStream(fileName):
     fileObject = xlrd.open_workbook(f"{fileName}", on_demand = True)        
     # for sheetName in fileObject.sheet_names():
-    #print('-----------------------', sheetName, '-----------------------')
-    print('-----------------------4_LATEK_OPIS-----------------------')
-    currentSheet = fileObject.sheet_by_name('4_LATEK_OPIS') #sheetName        
+    #print('-----------------------', sheetName, '-----------------------')    
+    currentSheet = fileObject.sheet_by_name('6_LATEK_OPIS') #sheetName        
     sheetData = fileRead(currentSheet)           
 
     return sheetData
@@ -63,7 +62,7 @@ def fileRead(sheet):
 
     commandsOP.append(sheet.cell_value(0,0).strip().capitalize())
     commandsOP.append(int(sheet.cell_value(1,0)))
-    commandsOP.append(sheet.cell_value(2,0).strip().capitalize())
+    commandsOP.append(sheet.cell_value(2,0).strip())
 
     print("Begin")
     for row in range(3,sheet.nrows): 

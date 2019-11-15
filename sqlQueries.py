@@ -1,21 +1,11 @@
-
-def insertUP_SchematyOcenOpisowychNaglowek(IdScheamtyOcenOpisowych,Wartosc,Kolejnosc):
-    commands = []    
-    commands.append(f"""
-    INSERT INTO [dbo].[UP_SchematyOcenOpisowychNaglowek] ([IdScheamtyOcenOpisowych], [Wartosc], [Kolejnosc]) VALUES ({IdScheamtyOcenOpisowych}, '{Wartosc}', {Kolejnosc});""")
-    return commands
-
 def insertUP_SchematyOcenOpisowychNaglowekFor(data):
     commands = []
     for i in data:
         commands.append(f"""
-    INSERT INTO [dbo].[UP_SchematyOcenOpisowychNaglowek] VALUES {i};""")
-    return commands
-
-def insertUP_SchematyOcenOpisowychWiersz(IdScheamtyOcenOpisowych,Wartosc,Wyroznienie,Kolejnosc):
-    commands = []
-    commands.append(f"""
-    INSERT INTO [dbo].[UP_SchematyOcenOpisowychWiersz] ([IdScheamtyOcenOpisowych], [Wartosc], [Wyroznienie], [Kolejnosc]) VALUES ({IdScheamtyOcenOpisowych}, '{Wartosc}', {Wyroznienie},{Kolejnosc}) GO""")
+    IF NOT EXISTS (SELECT Id FROM [dbo].[UP_SchematyOcenOpisowychNaglowek] Where IdSchematyOcenOpisowych = @Id AND Wartosc = '{i}')
+    BEGIN
+        INSERT INTO [dbo].[UP_SchematyOcenOpisowychNaglowek] VALUES {i};
+    END""")
     return commands
 
     
@@ -47,10 +37,13 @@ def selectIdUP_SchematyOcenOpisowychWiersz(Kolejnosc,data):
 def insertUP_SchematyOcenOpisowych(typSchematu,data):
     commands = []
     commands.append(f"""
-    INSERT INTO [dbo].[UP_SchematyOcenOpisowych] VALUES ({typSchematu},'{data[0]}',{data[1]},'{data[2]}');
-    
-    DECLARE @id int;
-    SET @id = (Select Id from UP_SchematyOcenOpisowych where Nazwa = '{data[0]}' AND Opis = '{data[2]}');
+    IF NOT EXISTS (SELECT Id FROM [dbo].[UP_SchematyOcenOpisowych] WHERE TypSchematu = {typSchematu} AND Poziom = {data[1]} AND Nazwa = '{data[0]}')
+    BEGIN
+        INSERT INTO [dbo].[UP_SchematyOcenOpisowych] VALUES ({typSchematu},'{data[0]}',{data[1]},'{data[2]}');
+        
+        DECLARE @id int;
+        SET @id = (Select Id from UP_SchematyOcenOpisowych where Nazwa = '{data[0]}' AND Opis = '{data[2]}');
+    END
     """)
     commands.append(f"")
     return commands
